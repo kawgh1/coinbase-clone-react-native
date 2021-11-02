@@ -8,6 +8,11 @@
 
 -   ## Tools Used
 
+    -   Crypto API
+
+        -   Coin Gecko
+            -   https://api.coingecko.com/api/v3/coins/
+
     -   Navigation
 
         -   https://reactnavigation.org/docs/getting-started
@@ -16,7 +21,12 @@
         -   **npm install @react-navigation/bottom-tabs**
 
     -   Axios
+
         -   **npm install axios**
+
+    -   Home Rewards Component
+        -   Linear Gradient
+            -   **npm install expo-linear-gradient**
 
 ## Things I added
 

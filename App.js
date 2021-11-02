@@ -26,7 +26,7 @@ export default function App() {
                 }}
             >
                 <Tab.Screen
-                    name="Coinbase"
+                    name="Coinbase Clone"
                     component={Home}
                     options={{
                         tabBarIcon: ({ focused }) => (
