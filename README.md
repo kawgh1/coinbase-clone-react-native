@@ -17,3 +17,14 @@
 
     -   Axios
         -   **npm install axios**
+
+## Things I added
+
+-   Styling
+
+    -   Made price change %s conditionally red or green if > or < 0, added + and -
+    -   Add commas to prices over $1,000 when displayed by .map()
+
+        function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
