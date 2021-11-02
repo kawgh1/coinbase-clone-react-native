@@ -9,7 +9,9 @@ import {
     Image,
     StyleSheet,
 } from "react-native";
-import HomeWatchList from "./HomeWatchList";
+import HomeRewards from "../components/home/HomeRewards";
+import HomeTopMovers from "../components/home/HomeTopMovers";
+import HomeWatchList from "../components/home/HomeWatchList";
 
 export default function Home() {
     const styles = StyleSheet.create({
@@ -65,6 +67,12 @@ export default function Home() {
                 </View>
                 <View style={{ paddingTop: 50, paddingHorizontal: 20 }}>
                     <HomeWatchList />
+                </View>
+                <View style={{ paddingTop: 50, paddingHorizontal: 20 }}>
+                    <HomeTopMovers />
+                </View>
+                <View style={{ paddingTop: 50, paddingHorizontal: 20 }}>
+                    <HomeRewards />
                 </View>
             </ScrollView>
         </SafeAreaView>

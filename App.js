@@ -2,11 +2,11 @@ import * as React from "react";
 import { Text, View, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "./components/Home";
-import Portfolio from "./components/Portfolio";
-import Prices from "./components/Prices";
-import Transfer from "./components/Transfer";
-import Settings from "./components/Settings";
+import Home from "./screens/Home";
+import Portfolio from "./screens/Portfolio";
+import Prices from "./screens/Prices";
+import Transfer from "./screens/Transfer";
+import Settings from "./screens/Settings";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,7 +26,7 @@ export default function App() {
                 }}
             >
                 <Tab.Screen
-                    name="Home"
+                    name="Coinbase"
                     component={Home}
                     options={{
                         tabBarIcon: ({ focused }) => (
