@@ -30,6 +30,9 @@
 
 ## Things I added
 
+-   Really went to town with the Coin Gecko API
+-   Added custom styling and conditional price formatting to accomodate for both very large prices like Bitcoin at $63,000 and very small prices like Shiba Inu at $0.00007146
+
 -   Styling
 
     -   Made price change %s conditionally red or green if > or < 0, added + and -

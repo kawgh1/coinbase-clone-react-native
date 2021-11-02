@@ -132,6 +132,25 @@ export default function HomeWatchList() {
 
     console.log("watchlist coins array ", watchlistCoins);
 
+    /**
+     * Number.prototype.format(n, x)
+     *
+     * @param integer n: length of decimal
+     * @param integer x: length of sections
+     */
+    Number.prototype.format = function (n, x) {
+        var re = "\\d(?=(\\d{" + (x || 3) + "})+" + (n > 0 ? "\\." : "$") + ")";
+        return this.toFixed(Math.max(0, ~~n)).replace(
+            new RegExp(re, "g"),
+            "$&,"
+        );
+    };
+
+    // (1234).format(); // "1,234"
+    // (12345).format(2); // "12,345.00"
+    // (123456.7).format(3, 2); // "12,34,56.700"
+    // (123456.789).format(2, 4); // "12,3456.79"
+
     return (
         <View>
             <View>
@@ -215,14 +234,31 @@ export default function HomeWatchList() {
                                                 fontWeight: "600",
                                             }}
                                         >
-                                            {/* ${numberWithCommas(coin.price)} */}
+                                            {/* Conditional rendering of prices */}
                                             $
-                                            {coin.market_data.current_price.usd
+                                            {coin.market_data.current_price
+                                                .usd > 0.01
+                                                ? Intl.NumberFormat(
+                                                      "en-US"
+                                                  ).format(
+                                                      coin.market_data
+                                                          .current_price.usd
+                                                  )
+                                                : coin.market_data.current_price.usd.format(
+                                                      8,
+                                                      3
+                                                  )}
+                                            {/* ${numberWithCommas(coin.price)} */}
+                                            {/* {coin.market_data.current_price.usd
                                                 .toString()
                                                 .replace(
-                                                    /\B(?=(\d{8})+(?!\d))/g,
+                                                    /\B(?=(\d{3})+(?!\d))/g,
                                                     ","
-                                                )}
+                                                )} */}
+                                            {/* {coin.market_data.current_price.usd.format(
+                                                6,
+                                                3
+                                            )} */}
                                             {/* {Intl.NumberFormat("en-US").format(
                                                 coin.market_data.current_price
                                                     .usd
