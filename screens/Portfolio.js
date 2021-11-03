@@ -25,15 +25,6 @@ const Portfolio = () => {
             });
     }, []);
 
-    /*  
-        Then what’s the way to run a for loop inside JSX? 
-        Well, we have to use callback approach. 
-        Check this code – 
-    */
-    const runCallback = (cb) => {
-        return cb();
-    };
-
     // static coin data
     // console.log(staticCoinsArray);
 
@@ -46,7 +37,7 @@ const Portfolio = () => {
 
     for (let i = 0; i < staticCoinsArray.length; i++) {
         for (let j = 0; j < data.length; j++) {
-            // if the coins have the same name as our static Coin data and quantity is NOT 0
+            // if the API coins have the same name as our static Coin data AND our quantity is NOT 0
             if (
                 staticCoinsArray[i].name === data[j].name &&
                 staticCoinsArray[i].quantity !== 0
@@ -63,6 +54,10 @@ const Portfolio = () => {
     const portfolioBalanceArray = [];
 
     // get portfolio balance
+    // basically, for each coin in our portfolio, multiply the quantity * the current price
+    // and add that number to portfolioBalanceArray which contains the (quantity * price) for each coin we have
+    // [(0.25 BTC * $63,062), (2 ETH * $4,572), (25 SOL * $219.72), ..., ...]
+    // [ 15765.5, 9144.8, 5493, 6863.999999999999, 4.531, 606 ]
     for (let i = 0; i < portfolioArray.length; i++) {
         for (let j = 0; j < staticCoinsArray.length; j++) {
             if (portfolioArray[i].name === staticCoinsArray[j].name) {
@@ -80,12 +75,12 @@ const Portfolio = () => {
         finalBalance += x;
     });
 
-    console.log("final balance is ", finalBalance);
+    // console.log("final balance is ", finalBalance);
 
-    console.log("portfolio balance array", portfolioBalanceArray);
+    // console.log("portfolio balance array", portfolioBalanceArray);
     // console.log("data is ", data);
 
-    console.log("portfolio array is ", portfolioArray);
+    // console.log("portfolio array is ", portfolioArray);
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
             <ScrollView style={{ flex: 1 }}>
@@ -159,14 +154,24 @@ const Portfolio = () => {
                                             color: "#444",
                                         }}
                                     >
-                                        {coin.quantity}&nbsp;
+                                        {Intl.NumberFormat("en-US").format(
+                                            coin.quantity
+                                        )}
+                                        &nbsp;
                                         {coin.symbol.toUpperCase()}
                                     </Text>
                                 </View>
-                                <View style={{ paddingLeft: 15 }}>
+                                <View
+                                    style={{
+                                        paddingLeft: 15,
+                                        flexDirection: "column",
+                                        justifyContent: "flex-end",
+                                        alignItems: "flex-end",
+                                    }}
+                                >
                                     <Text
                                         style={{
-                                            fontSize: 17,
+                                            fontSize: 18,
                                             fontWeight: "600",
                                         }}
                                     >
@@ -185,11 +190,24 @@ const Portfolio = () => {
                                     <Text
                                         style={{
                                             fontSize: 14,
-                                            fontWeight: "300",
+                                            fontWeight: "400",
                                             color: "#5d616d",
                                         }}
                                     >
-                                        {coin.market_data.current_price.usd}
+                                        {/* Conditional rendering of prices */}$
+                                        {coin.market_data.current_price.usd >
+                                        0.01
+                                            ? coin.market_data.current_price.usd
+                                                  .toFixed(2)
+                                                  .toString()
+                                                  .replace(
+                                                      /\B(?=(\d{3})+(?!\d))/g,
+                                                      ","
+                                                  )
+                                            : coin.market_data.current_price.usd.format(
+                                                  8,
+                                                  3
+                                              )}
                                     </Text>
                                 </View>
                             </View>
