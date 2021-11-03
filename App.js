@@ -19,7 +19,7 @@ export default function App() {
                         position: "absolute",
                         elevation: 0,
                         backgroundColor: "white",
-                        height: 70,
+                        height: 80,
                     },
                     tabBarShowLabel: false,
                 }}

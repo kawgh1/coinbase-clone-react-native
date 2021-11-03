@@ -19,7 +19,11 @@ const HomeRewards = () => {
                 <View style={{ paddingTop: 15, maxWidth: 500 }}>
                     <LinearGradient
                         colors={["#6c13d7", "#6c13d7"]}
-                        style={{ borderRadius: 15 }}
+                        style={{
+                            borderRadius: 15,
+                            border: "1px solid whitesmoke",
+                            boxShadow: "2px 2px 4px rgb(0,0,0)",
+                        }}
                         start={[0.1, 0.1]}
                         end={[0.9, 0.1]}
                     >

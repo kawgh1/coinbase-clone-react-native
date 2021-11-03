@@ -12,6 +12,7 @@ import {
 import HomeRewards from "../components/home/HomeRewards";
 import HomeTopMovers from "../components/home/HomeTopMovers";
 import HomeWatchList from "../components/home/HomeWatchList";
+import HomeCoinbaseCard from "../components/home/CoinbaseCard";
 
 export default function Home() {
     const styles = StyleSheet.create({
@@ -25,7 +26,7 @@ export default function Home() {
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
-            <ScrollView style={{ flex: 1, paddingBottom: 100 }}>
+            <ScrollView style={{ flex: 1, paddingBottom: 200 }}>
                 <View
                     style={{
                         alignItems: "center",
@@ -70,6 +71,9 @@ export default function Home() {
                 </View>
                 <View style={{ paddingTop: 50, paddingHorizontal: 20 }}>
                     <HomeTopMovers />
+                </View>
+                <View style={{ paddingTop: 50, paddingHorizontal: 20 }}>
+                    <HomeCoinbaseCard />
                 </View>
                 <View style={{ paddingTop: 50, paddingHorizontal: 20 }}>
                     <HomeRewards />

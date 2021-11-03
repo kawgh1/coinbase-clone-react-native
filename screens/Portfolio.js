@@ -132,8 +132,6 @@ const Portfolio = () => {
                                             width: 40,
                                             height: 40,
                                             borderRadius: 50,
-                                            borderWidth: 0.5,
-                                            borderColor: "#e2e2e2",
                                         }}
                                     />
                                 </View>

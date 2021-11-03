@@ -30,7 +30,7 @@
 
 ## Things I added
 
--   Really went to town with the Coin Gecko API
+-   Really went to town with the Coin Gecko API - it's really clear and easy to use!
 -   Added custom styling and conditional price formatting to accomodate for both very large prices like Bitcoin at $63,000 and very small prices like Shiba Inu at $0.00007146
 
 -   Styling
@@ -43,6 +43,8 @@
         }
 
 -   Improved Folder structure
+-   Got the status tabs working on the "Prices" screen using conditional rendering
+    -   User can click "Gainers" to show only coins with positive 24 hour change or "Loser" to show only coins with negative 24 hour change
 
 ## Notes
 
