@@ -25,7 +25,7 @@ export default function Home() {
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
-            <ScrollView style={{ flex: 1 }}>
+            <ScrollView style={{ flex: 1, paddingBottom: 100 }}>
                 <View
                     style={{
                         alignItems: "center",

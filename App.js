@@ -14,15 +14,14 @@ export default function App() {
     return (
         <NavigationContainer>
             <Tab.Navigator
-                tabBarOptions={{
-                    showLabel: false,
-                    style: {
+                screenOptions={{
+                    tabBarStyle: {
                         position: "absolute",
                         elevation: 0,
                         backgroundColor: "white",
-                        borderRadius: 15,
-                        height: 90,
+                        height: 70,
                     },
+                    tabBarShowLabel: false,
                 }}
             >
                 <Tab.Screen
@@ -106,9 +105,9 @@ export default function App() {
                                     source={require("./assets/icons/1x/transfer.png")}
                                     resizeMode="contain"
                                     style={{
-                                        width: 40,
-                                        height: 40,
-                                        tintColor: focused ? "#2150f5" : "gray",
+                                        width: 45,
+                                        height: 45,
+                                        tintColor: "#2150f5",
                                     }}
                                 />
                             </View>

@@ -10,6 +10,8 @@ import {
     Image,
     StyleSheet,
 } from "react-native";
+// Dummy Data
+import { staticCoinsArray } from "../../StaticCoinsData";
 
 export default function HomeWatchList() {
     // display commas when number is over 1,000
@@ -35,72 +37,10 @@ export default function HomeWatchList() {
     // console.log("data is ", data);
 
     // static coin data
-    const [staticCoins, setStaticCoins] = useState([
-        {
-            id: 1,
-            name: "Bitcoin",
-            icon: "https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9ab8d6934b83a4aa8ae5e8711609a70ca0ab1b2b/128/color/btc.png",
-            nick: "BTC",
-            price: 63421.18,
-            drop: 3.89,
-        },
-        {
-            id: 2,
-            name: "Ethereum",
-            icon: "https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9ab8d6934b83a4aa8ae5e8711609a70ca0ab1b2b/128/color/eth.png",
-            nick: "ETH",
-            price: 4500.55,
-            drop: 4.62,
-        },
-        {
-            id: 3,
-            name: "Solana",
-            icon: "https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9ab8d6934b83a4aa8ae5e8711609a70ca0ab1b2b/128/color/xrp.png",
-            nick: "SOL",
-            price: 1.12,
-            drop: 12.1,
-        },
-        {
-            id: 4,
-            name: "Shiba Inu",
-            icon: "https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9ab8d6934b83a4aa8ae5e8711609a70ca0ab1b2b/128/color/bch.png",
-            nick: "SHIB",
-            price: 603.85,
-            drop: -3.45,
-        },
-        {
-            id: 5,
-            name: "Chainlink",
-            icon: "https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9ab8d6934b83a4aa8ae5e8711609a70ca0ab1b2b/128/color/ltc.png",
-            nick: "LINK",
-            price: 203.35,
-            drop: -1.17,
-        },
-        {
-            id: 6,
-            name: "Cardano",
-            icon: "https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9ab8d6934b83a4aa8ae5e8711609a70ca0ab1b2b/128/color/xlm.png",
-            nick: "CAD",
-            price: 0.37,
-            drop: -2.36,
-        },
-        {
-            id: 6,
-            name: "AAVE",
-            icon: "https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9ab8d6934b83a4aa8ae5e8711609a70ca0ab1b2b/128/color/xlm.png",
-            nick: "AAVE",
-            price: 0.37,
-            drop: -2.36,
-        },
-        {
-            id: 6,
-            name: "Decentraland",
-            icon: "https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9ab8d6934b83a4aa8ae5e8711609a70ca0ab1b2b/128/color/xlm.png",
-            nick: "MANA",
-            price: 0.37,
-            drop: -2.36,
-        },
-    ]);
+    // console.log("static Coins array", staticCoinsArray);
+
+    // this is my work for getting to the for loops at the end
+    // its a mess, but some of it could be useful
 
     // var intersection = data.filter(function (e) {
     //     return staticCoins.indexOf(e) > -1;
@@ -122,15 +62,15 @@ export default function HomeWatchList() {
 
     // get the coingecko API coin data objects for the coins we want (in our static Coins array)
     // and pull those data objects into a new array that we will draw data from to display in watchlist
-    for (let i = 0; i < staticCoins.length; i++) {
+    for (let i = 0; i < staticCoinsArray.length; i++) {
         for (let j = 0; j < data.length; j++) {
-            if (staticCoins[i].name === data[j].name) {
+            if (staticCoinsArray[i].name === data[j].name) {
                 watchlistCoins.push(data[j]);
             }
         }
     }
 
-    console.log("watchlist coins array ", watchlistCoins);
+    // console.log("watchlist coins array ", watchlistCoins);
 
     /**
      * Number.prototype.format(n, x)
@@ -181,10 +121,10 @@ export default function HomeWatchList() {
                                 <View
                                     style={{
                                         flexDirection: "row",
-                                        paddingTop: 35,
+                                        paddingTop: 10,
                                         paddingHorizontal: 25,
                                         justifyContent: "space-between",
-                                        paddingBottom: 20,
+                                        paddingBottom: 10,
                                     }}
                                 >
                                     <View>
@@ -194,8 +134,6 @@ export default function HomeWatchList() {
                                                 width: 40,
                                                 height: 40,
                                                 borderRadius: 50,
-                                                borderWidth: 0.5,
-                                                borderColor: "#e2e2e2",
                                             }}
                                         />
                                     </View>
@@ -238,17 +176,23 @@ export default function HomeWatchList() {
                                             $
                                             {coin.market_data.current_price
                                                 .usd > 0.01
-                                                ? Intl.NumberFormat(
-                                                      "en-US"
-                                                  ).format(
-                                                      coin.market_data
-                                                          .current_price.usd
-                                                  )
+                                                ? coin.market_data.current_price.usd
+                                                      .toFixed(2)
+                                                      .toString()
+                                                      .replace(
+                                                          /\B(?=(\d{3})+(?!\d))/g,
+                                                          ","
+                                                      )
                                                 : coin.market_data.current_price.usd.format(
                                                       8,
                                                       3
                                                   )}
                                             {/* ${numberWithCommas(coin.price)} */}
+                                            {/* Intl.NumberFormat(
+                                                      "en-US"
+                                                  ).format(
+                                                      coin.market_data.current_price.usd
+                                                  ) */}
                                             {/* {coin.market_data.current_price.usd
                                                 .toString()
                                                 .replace(

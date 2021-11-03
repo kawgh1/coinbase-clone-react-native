@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
     View,
     Text,
@@ -15,56 +16,43 @@ const HomeTopMovers = () => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    const [coins, setCoins] = useState([
-        {
-            id: 1,
-            name: "Bitcoin",
-            icon: "https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9ab8d6934b83a4aa8ae5e8711609a70ca0ab1b2b/128/color/btc.png",
-            nick: "BTC",
-            price: 63421.18,
-            drop: 3.89,
-        },
-        {
-            id: 2,
-            name: "Ethereum",
-            icon: "https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9ab8d6934b83a4aa8ae5e8711609a70ca0ab1b2b/128/color/eth.png",
-            nick: "ETH",
-            price: 4500.55,
-            drop: 4.62,
-        },
-        {
-            id: 3,
-            name: "Ripple",
-            icon: "https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9ab8d6934b83a4aa8ae5e8711609a70ca0ab1b2b/128/color/xrp.png",
-            nick: "XRP",
-            price: 1.12,
-            drop: 12.1,
-        },
-        {
-            id: 4,
-            name: "Bitcoin Cash",
-            icon: "https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9ab8d6934b83a4aa8ae5e8711609a70ca0ab1b2b/128/color/bch.png",
-            nick: "BCH",
-            price: 603.85,
-            drop: -3.45,
-        },
-        {
-            id: 5,
-            name: "Litecoin",
-            icon: "https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9ab8d6934b83a4aa8ae5e8711609a70ca0ab1b2b/128/color/ltc.png",
-            nick: "LTC",
-            price: 203.35,
-            drop: -1.17,
-        },
-        {
-            id: 6,
-            name: "Stellar Lumens",
-            icon: "https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@9ab8d6934b83a4aa8ae5e8711609a70ca0ab1b2b/128/color/xlm.png",
-            nick: "XLM",
-            price: 0.37,
-            drop: -2.36,
-        },
-    ]);
+    const [topMoverCoins, setTopMoverCoins] = useState([]);
+
+    // coingecko api call
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const request = await axios.get(
+                `https://api.coingecko.com/api/v3/coins/`
+            );
+            // console.log("request.data is ", request.data);
+            setData(request.data);
+        }
+        fetchData();
+    }, []);
+
+    // get the coingecko API coin data objects for the coins we want (in our TopMovers array)
+    // and pull those data objects into a new array that we will draw data from to display in topMovers
+
+    for (let j = 0; j < data.length; j++) {
+        // if (staticCoins[i].name === data[j].name) {
+        topMoverCoins.push(data[j]);
+        // }
+    }
+
+    const sortedArray = topMoverCoins.sort((a, b) => {
+        return (
+            b.market_data.price_change_percentage_24h -
+            a.market_data.price_change_percentage_24h
+        );
+    });
+
+    const top10MoversArray = sortedArray.slice(0, 10);
+
+    console.log("top 10 movers array", top10MoversArray);
+    // console.log("topMover coins array ", topMoverCoins);
+
     return (
         <View>
             <Text
@@ -82,8 +70,9 @@ const HomeTopMovers = () => {
                 showsHorizontalScrollIndicator={false}
                 style={{ paddingTop: 20 }}
             >
-                {coins.map((coin) => (
+                {top10MoversArray.map((coin) => (
                     <View key={coin.id}>
+                        {/* Mover Container */}
                         <View
                             style={{
                                 width: 150,
@@ -93,11 +82,12 @@ const HomeTopMovers = () => {
                                 borderRadius: 10,
                                 marginRight: 15,
                                 paddingHorizontal: 15,
+                                paddingVertical: 15,
                             }}
                         >
+                            {/* Icon and Symbol */}
                             <View
                                 style={{
-                                    marginTop: 15,
                                     paddingRight: 10,
                                     flexDirection: "row",
                                     alignItems: "center",
@@ -105,10 +95,11 @@ const HomeTopMovers = () => {
                                 }}
                             >
                                 <Image
-                                    source={{ uri: coin.icon }}
+                                    source={{ uri: coin.image.large }}
                                     style={{
                                         width: 35,
                                         height: 35,
+                                        borderRadius: 50,
                                         marginRight: 10,
                                     }}
                                 />
@@ -118,13 +109,35 @@ const HomeTopMovers = () => {
                                         fontWeight: "700",
                                     }}
                                 >
-                                    {coin.nick}
+                                    {coin.symbol.toUpperCase()}
+                                </Text>
+                            </View>
+                            {/* Coin name */}
+                            <View
+                                style={{
+                                    marginTop: 5,
+                                    paddingRight: 10,
+                                    flexDirection: "row",
+                                    alignItems: "center",
+                                    justifyContent: "flex-end",
+                                    textAlign: "right",
+                                }}
+                            >
+                                <Text
+                                    style={{
+                                        fontSize: 13,
+                                        fontWeight: "700",
+                                    }}
+                                >
+                                    {coin.name}
                                 </Text>
                             </View>
 
+                            {/* Coin price */}
                             <View
                                 style={{
-                                    marginTop: 15,
+                                    marginTop: 5,
+                                    paddingRight: 12,
                                     flexDirection: "row",
                                     alignItems: "center",
                                     justifyContent: "flex-end",
@@ -138,38 +151,77 @@ const HomeTopMovers = () => {
                                         color: "#444",
                                     }}
                                 >
-                                    ${numberWithCommas(coin.price)}
+                                    {/* Conditional rendering of prices */}$
+                                    {coin.market_data.current_price.usd > 0.01
+                                        ? coin.market_data.current_price.usd
+                                              .toFixed(2)
+                                              .toString()
+                                              .replace(
+                                                  /\B(?=(\d{3})+(?!\d))/g,
+                                                  ","
+                                              )
+                                        : coin.market_data.current_price.usd.format(
+                                              8,
+                                              3
+                                          )}
+                                    {/* ${numberWithCommas(coin.price)} */}
+                                    {/* Intl.NumberFormat(
+                                                      "en-US"
+                                                  ).format(
+                                                      coin.market_data.current_price.usd
+                                                  ) */}
+                                    {/* {coin.market_data.current_price.usd
+                                                .toString()
+                                                .replace(
+                                                    /\B(?=(\d{3})+(?!\d))/g,
+                                                    ","
+                                                )} */}
+                                    {/* {coin.market_data.current_price.usd.format(
+                                                6,
+                                                3
+                                            )} */}
+                                    {/* {Intl.NumberFormat("en-US").format(
+                                                coin.market_data.current_price
+                                                    .usd
+                                            )} */}
                                 </Text>
                             </View>
 
+                            {/* Coin percent increase last 24 hours */}
                             <View
                                 style={{
-                                    paddingTop: 15,
+                                    paddingTop: 5,
+                                    paddingRight: 10,
                                     flexDirection: "row",
                                     alignItems: "center",
                                     justifyContent: "flex-end",
                                 }}
                             >
+                                {/* Price Change % */}
                                 <Text
                                     style={
-                                        coin.drop >= 0
+                                        coin.market_data
+                                            .price_change_percentage_24h >= 0
                                             ? {
-                                                  fontSize: 15,
+                                                  fontSize: 16,
                                                   fontWeight: "700",
-                                                  paddingLeft: 10,
                                                   color: "green",
                                               }
                                             : {
-                                                  fontSize: 15,
-                                                  fontWeight: "700",
-                                                  paddingLeft: 10,
+                                                  fontSize: 14,
+                                                  fontWeight: "600",
                                                   color: "red",
                                               }
                                     }
                                 >
-                                    {coin.drop >= 0
-                                        ? `+${coin.drop}`
-                                        : coin.drop}
+                                    {coin.market_data
+                                        .price_change_percentage_24h >= 0
+                                        ? `+${coin.market_data.price_change_percentage_24h.toFixed(
+                                              2
+                                          )}`
+                                        : coin.market_data.price_change_percentage_24h.toFixed(
+                                              2
+                                          )}
                                     %
                                 </Text>
                             </View>

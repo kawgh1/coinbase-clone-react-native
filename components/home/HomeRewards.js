@@ -16,7 +16,7 @@ const HomeRewards = () => {
                 >
                     Rewards
                 </Text>
-                <View style={{ paddingTop: 15 }}>
+                <View style={{ paddingTop: 15, maxWidth: 500 }}>
                     <LinearGradient
                         colors={["#6c13d7", "#6c13d7"]}
                         style={{ borderRadius: 15 }}
@@ -25,7 +25,7 @@ const HomeRewards = () => {
                     >
                         <View
                             style={{
-                                height: 190,
+                                height: 200,
                                 width: "auto",
                                 borderRadius: 10,
                                 paddingTop: 15,
@@ -51,14 +51,22 @@ const HomeRewards = () => {
                             >
                                 Start earning
                             </Text>
-                            <Image
-                                source={require("../../assets/icons/1x/medal.jpeg")}
-                                resizeMode="contain"
+                            <View
                                 style={{
-                                    width: 300,
-                                    height: 150,
+                                    flexDirection: "row",
+                                    justifyContent: "flex-end",
+                                    marginRight: 20,
                                 }}
-                            />
+                            >
+                                <Image
+                                    source={require("../../assets/icons/1x/medal.jpeg")}
+                                    resizeMode="contain"
+                                    style={{
+                                        width: 300,
+                                        height: 150,
+                                    }}
+                                />
+                            </View>
                         </View>
                     </LinearGradient>
                 </View>

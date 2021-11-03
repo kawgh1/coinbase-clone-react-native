@@ -43,3 +43,21 @@
         }
 
 -   Improved Folder structure
+
+## Notes
+
+-   Sort an array of objects by values
+-   https://www.javascripttutorial.net/array/javascript-sort-an-array-of-objects/
+
+    -   Used to sort Coin Gecko API Data into Top Movers (coins with largest 24 hour % increases)
+
+-   Getting the Bottom Navigation bar height to change from the default was tricky
+    -   <NavigationContainer>
+              <Tab.Navigator
+                  tabBarOptions={{
+                      showLabel: false,
+                  }}
+                  screenOptions={{
+                      tabBarStyle: { height: 100 },
+                  }}
+              >
