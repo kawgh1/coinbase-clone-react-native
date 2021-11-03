@@ -27,6 +27,11 @@
     -   Home Rewards Component
         -   Linear Gradient
             -   **npm install expo-linear-gradient**
+    -   Settings Screen Toggle
+        -   https://www.npmjs.com/package/react-native-switch-toggle
+        -   **npm install react-native-switch-toggle**
+    -   Transfer Screen Icons
+        -   **npm install react-native-elements**
 
 ## Things I added
 
@@ -44,7 +49,21 @@
 
 -   Improved Folder structure
 -   Got the status tabs working on the "Prices" screen using conditional rendering
+
     -   User can click "Gainers" to show only coins with positive 24 hour change or "Loser" to show only coins with negative 24 hour change
+
+-   # Deployment
+
+    -   ## Deploying React Native web-only app (no iOS or Android) to Netlify
+
+        -   https://blog.kripiz.com/setting-up-a-react-native-project-with-expo-206/
+
+        -   have to make sure expo-cli is installed
+        -   **npm install expo-cli**
+
+        -   run **expo build:web** in terminal
+        -   on Netlify set Build command "expo build:web"
+        -   set Publish directory: web-build
 
 ## Notes
 

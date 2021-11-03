@@ -65,7 +65,7 @@ export default function CoinbaseCard() {
                                         color: "white",
                                         fontWeight: "400",
                                         paddingTop: 10,
-                                        width: 200,
+                                        maxWidth: 170,
                                     }}
                                 >
                                     Get rewards when you spend crypto or US

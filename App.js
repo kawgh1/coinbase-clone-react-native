@@ -91,7 +91,7 @@ export default function App() {
                 />
 
                 <Tab.Screen
-                    name="transfer"
+                    name="Transfer"
                     component={Transfer}
                     options={{
                         tabBarIcon: ({ focused }) => (
@@ -107,7 +107,9 @@ export default function App() {
                                     style={{
                                         width: 45,
                                         height: 45,
-                                        tintColor: "#2150f5",
+                                        tintColor: focused
+                                            ? "rgb(25,25,200)"
+                                            : "#2150f5",
                                     }}
                                 />
                             </View>
