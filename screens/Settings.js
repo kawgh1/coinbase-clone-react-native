@@ -67,7 +67,7 @@ const Settings = () => {
                                         fontWeight: "300",
                                         letterSpacing: 0.5,
                                         marginRight: 10,
-                                        maxWidth: 250,
+                                        maxWidth: 225,
                                     }}
                                 >
                                     Share your love for crypto and get $10 of

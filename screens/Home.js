@@ -13,6 +13,7 @@ import HomeRewards from "../components/home/HomeRewards";
 import HomeTopMovers from "../components/home/HomeTopMovers";
 import HomeWatchList from "../components/home/HomeWatchList";
 import HomeCoinbaseCard from "../components/home/CoinbaseCard";
+import HomeNews from "../components/home/HomeNews";
 
 export default function Home() {
     const styles = StyleSheet.create({
@@ -77,6 +78,9 @@ export default function Home() {
                 </View>
                 <View style={{ paddingTop: 50, paddingHorizontal: 20 }}>
                     <HomeRewards />
+                </View>
+                <View style={{ paddingTop: 50, paddingHorizontal: 0 }}>
+                    <HomeNews />
                 </View>
             </ScrollView>
         </SafeAreaView>

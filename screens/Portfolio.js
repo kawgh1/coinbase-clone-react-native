@@ -87,6 +87,7 @@ const Portfolio = () => {
                 <View
                     style={{
                         paddingTop: 50,
+                        paddingBottom: 100,
                         paddingHorizontal: 20,
                         marginBottom: 90,
                     }}

@@ -17,12 +17,13 @@ export default function Transfer() {
                 <View
                     style={{
                         paddingHorizontal: 20,
-
+                        paddingTop: 50,
+                        paddingBottom: 100,
                         justifyContent: "center",
                         alignItems: "center",
                     }}
                 >
-                    <View style={{ paddingTop: 30 }}>
+                    <View style={{ paddingVertical: 30 }}>
                         <TransferComponent />
                     </View>
                 </View>

@@ -18,7 +18,7 @@ const HomeRewards = () => {
                 </Text>
                 <View style={{ paddingTop: 15, maxWidth: 500 }}>
                     <LinearGradient
-                        colors={["#6c13d7", "#6c13d7"]}
+                        colors={["rgb(33,80,245)", "rgb(33,80,245)"]}
                         style={{
                             borderRadius: 15,
                             border: "1px solid whitesmoke",
@@ -63,7 +63,7 @@ const HomeRewards = () => {
                                 }}
                             >
                                 <Image
-                                    source={require("../../assets/icons/1x/medal.jpeg")}
+                                    source={require("../../assets/icons/1x/medal1.png")}
                                     resizeMode="contain"
                                     style={{
                                         width: 300,

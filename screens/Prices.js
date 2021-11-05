@@ -128,7 +128,7 @@ const Prices = () => {
                                             : {
                                                   fontSize: 29,
                                                   fontWeight: "600",
-                                                  color: "white",
+                                                  color: "red",
                                               }
                                         : { color: "white" }
                                 }
